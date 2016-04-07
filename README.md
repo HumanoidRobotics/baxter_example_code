@@ -19,7 +19,8 @@ $ catkin_make
 $ source devel/setup.bash
 ```
 
-## Running the Demo code
+Running the Demo code
+-------------------------
 First, bring up Gazebo, and Baxter
 ```bash
 $  ./baxter.sh sim
@@ -34,6 +35,28 @@ Then:
 $ rosrun baxter_examples joint_position_keyboard.py
 $ rosrun baxter_examples joint_velocity_wobbler.py
 ```
+
+Using Moveit!
+-------------
+Start by bringing up Gazebo and Baxter as in the previous step.
+Then, in a new terminal run the following: 
+```bash
+$ source devel/setup.bash
+$ ./baxter.sh sim
+$ rosrun baxter_tools enable_robot.py -e
+$ rosrun baxter_interface joint_trajectory_action_server.py
+```
+This will make sure that the robot (simulator) is enabled and can be talked to,
+and will also spin up a special node for moving the simulated robot.
+
+In a 3rd terminal run this: 
+```bash
+$ source devel/setup.bash
+$ ./baxter.sh sim
+$ roslaunch baxter_moveit_config baxter_grippers.launch
+```
+This actually launches moveit.
+
 
 Note: For every new terminal you open up, you will have to run the following:
 ```bash
